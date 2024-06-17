@@ -144,9 +144,17 @@ async fn create_record(
         "repo": handle,
         "collection": "app.bsky.feed.post",
         "record": {
-            "text": text.to_string().trim(),
+            "text": "",
             "facets": Some(facets),
             "createdAt": format!("{:?}", chrono::Utc::now()),
+            "embed": {
+                "$type": "app.bsky.embed.external",
+                "external": {
+                    "uri": text,
+                    "title": "",
+                    "description": "",
+                }
+            }
         },
     });
 
